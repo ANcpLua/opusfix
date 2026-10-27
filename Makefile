@@ -2,7 +2,7 @@ SHELL := /bin/bash
 .DEFAULT_GOAL := check
 .NOTPARALLEL:
 UNION_SOURCE ?= ../nami/.agents/skills/csharp-union-types
-UNION_CHECKOUT ?= ../csharp-union-types
+UNION_CHECKOUT ?=
 UNION := plugins/nami/skills/csharp-union-types
 MSTEST := plugins/nami/skills/mstest
 .PHONY: check test verify verify-assertions verify-fixtures verify-union update-mstest-api check-mstest-api check-union-sync sync-union
@@ -32,7 +32,7 @@ check-mstest-api:
 	uv run --frozen python -B $(MSTEST)/scripts/generate_api.py --check
 
 check-union-sync:
-	python3 -B $(UNION_SOURCE)/scripts/sync.py --target $(CURDIR)/$(UNION) --target $(UNION_CHECKOUT)
+	python3 -B "$(UNION_SOURCE)/scripts/sync.py" --target "$(CURDIR)/$(UNION)" $(if $(strip $(UNION_CHECKOUT)),--target "$(abspath $(UNION_CHECKOUT))")
 
 sync-union:
-	python3 -B $(UNION_SOURCE)/scripts/sync.py --target $(CURDIR)/$(UNION) --target $(UNION_CHECKOUT) --apply
+	python3 -B "$(UNION_SOURCE)/scripts/sync.py" --target "$(CURDIR)/$(UNION)" $(if $(strip $(UNION_CHECKOUT)),--target "$(abspath $(UNION_CHECKOUT))") --apply

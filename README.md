@@ -35,9 +35,10 @@ when the command returns.
 
 The union source remains `../nami/.agents/skills/csharp-union-types`. Use
 `make check-union-sync` to compare it and `make sync-union` to explicitly export it
-here and to the sibling `csharp-union-types` checkout. Override `UNION_SOURCE` and
-`UNION_CHECKOUT` when those maintenance locations differ. Plugin use does not need
-either external checkout.
+into this plugin package. It does not create another standalone checkout.
+Override `UNION_SOURCE` if the canonical source is elsewhere. Only when deliberately
+maintaining another distribution, pass `UNION_CHECKOUT=/absolute/path` to include
+that additional export. Plugin use does not need either external checkout.
 
 MSTest's generated API reference is maintained separately from its lifecycle
 guidance. `make update-mstest-api` regenerates it from the configured release tags;
