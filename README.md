@@ -1,3 +1,9 @@
+# Source moved to ancplua-dotnet
+
+This repository is archived. The maintained source, tests and workflows are in [nami](https://github.com/ANcpLua/ancplua-dotnet/tree/main/packages/nami). The previous README below is historical; use the active repository for installation and verification.
+
+---
+
 # nami
 
 One portable plugin with five skills:
